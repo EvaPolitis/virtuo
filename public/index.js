@@ -199,62 +199,17 @@ for (var i in rentals){
   }
 
   //Step 5
-  for(var j in actors){
-    if( rentals[i].carId==actors[j].rentalId){
-      for(var l=0;l<actors[j].payment.length;l++) //iterate through payment list
-        {            
-            if(actors[j].payment[l].who == 'driver')
-            {
-              actors[j].payment[l].amount=rentals[i];
-            }
-           
-        }
-      
-     // actors[j].commission
+  for (var k in actors)
+  {
+    if (actors[k].rentalId == rentals[i].id)
+    {
+      actors[k].payment[0].amount= rentals[i].price;
+      actors[k].payment[1].amount=rentals[i].price-rentals[i].commission.insurance;
+      actors[k].payment[2].amount= rentals[i].commission.insurance;
+      actors[k].payment[3].amount= rentals[i].commission.treasury;
+      actors[k].payment[4].amount= rentals[i].commission.virtuo;
     }
   }
-
-    /*
-
-// Question 5
-
-actors.forEach(function(itemactors,indexactors,arrayactors){
-  var ind;
-  rentals.forEach(function(itemrentals,indexrentals,arrayrentals){
-    if(itemrentals.id==itemactors.rentalId)
-    {
-      ind = indexrentals;
-    }
-  })
-  itemactors.payment.forEach(function(itemactorspayment,indexactorspayment,arrayactorspayments){
-    var tot_com;
-    if (itemactorspayment.who=='driver')
-    {
-      itemactorspayment.amount=rentals[ind].price;
-    }
-    else if(itemactorspayment.who=='partner')
-    {
-      tot_com = rentals[ind].commission.insurance+rentals[ind].commission.treasury+rentals[ind].commission.virtuo;
-      itemactorspayment.amount=rentals[ind].price-tot_com;
-    }
-    else if (itemactorspayment.who=='insurance')
-    {
-      itemactorspayment.amount=rentals[ind].commission.insurance;
-    }
-    else if (itemactorspayment.who=='treasury')
-    {
-      itemactorspayment.amount=rentals[ind].commission.treasury;
-    }
-    else if (itemactorspayment.who=='virtuo')
-    {
-      itemactorspayment.amount=rentals[ind].commission.virtuo;
-    }
-  })
-})
-
-console.log(actors);
-console.log(rentals);
-*/
 
 //console.log(cars);
 console.log(rentals);
